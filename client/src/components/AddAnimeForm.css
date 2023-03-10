@@ -1,0 +1,20 @@
+.anime-container{
+    width: 50%;
+    margin: auto;
+}
+
+form {
+    padding: 30px;
+    border-radius: 10px;
+    display:inline-block;
+}
+
+.text-context{
+    text-align: justify;
+}
+
+img {
+    float: right;
+}
+
+

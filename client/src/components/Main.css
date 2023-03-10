@@ -1,0 +1,17 @@
+#animecontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: 15rem;
+    margin: 10px;
+    transition: transform 1s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 2px 2px 5px grey, -2px -2px 5px grey;
+}
+
+
