@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const WatchList = props => {
     const [data, setData] = useState([])
+    const Navigate = useNavigate()
 
 
     // get request with useEffect
@@ -15,7 +16,18 @@ const WatchList = props => {
                 // setData(e.data) 
                 )
             .catch( e=> console.log(e) )
-    },[] )
+    },[data] )
+
+    const deleteHandler = (id) => {
+        console.log("deleted", id)
+        axios.delete(`http://localhost:8000/api/deleteOne/${id}`)
+            // console.log(`${id}`)
+            .then((res) => {
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
 
     return(
@@ -38,7 +50,7 @@ const WatchList = props => {
                         <td><Link to={`/edit/${anime._id}`}>
                                 <button type="button" className='btn btn-secondary btn-sm me-3' >Edit</button>
                             </Link>
-                            <button className='btn btn-danger btn-sm'>Delete</button>
+                            <button onClick={(e) => deleteHandler(anime._id)}  className='btn btn-danger btn-sm'>Delete</button>
                         </td>
                     </tr>
                     )

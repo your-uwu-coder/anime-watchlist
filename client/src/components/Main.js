@@ -20,7 +20,7 @@ const Main = (props) => {
     }, [])
 
     return (
-        <div>
+        <div className='bg-img'>
             <div className='d-flex flex-wrap w-75 mx-auto' id="animecontainer">
                 {
                     allAnime.map((anime) => { return (
@@ -29,7 +29,7 @@ const Main = (props) => {
                                     <div className="card-body">
                                         <h5>{anime.title}</h5>
                                         <div className="d-flex justify-content-end">
-                                            <Link to={`/addanimeform/${anime.mal_id}`} className='btn btn-success'>Add to List</Link>
+                                            <Link to={`/addanimeform/${anime.mal_id}`} className='btn btn-primary'>View</Link>
                                         </div>
                                     </div>
                             </div>

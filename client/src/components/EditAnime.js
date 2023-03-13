@@ -43,6 +43,18 @@ const EditAnime = (props) => {
         })
     }
 
+    const deleteHandler = (id) => {
+        axios.delete(`http://localhost:8000/api/deleteOne/${id}`)
+        .then((res) => {
+            Navigate('/')
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
+
+
     return (
             <div className="w-25 mx-auto">
                 <form onSubmit={updateHandler} className='border mb-5 w-100'>
@@ -63,11 +75,11 @@ const EditAnime = (props) => {
                         <p className='mb-0 fw-bold'>Comments:</p>
                         <textarea className='form-control w-50' onChange={e => setAnime({...anime, 'comment': e.target.value})}/>
                         <br/>
-                        <button className='btn btn-secondary btn-sm mt-3'>Update</button>
+                        <button className='btn btn-secondary btn-sm mt-3' onClick={(e) => deleteHandler(anime._id)}>Update</button>
                     </div>
                 </form>
                 <h2>Reviews:</h2>
-                <p>{anime.createdAt}</p>
+                <p>{anime.updatedAt}</p>
                 <p>{anime.comment}</p>
             </div>
     )
