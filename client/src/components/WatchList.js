@@ -8,15 +8,18 @@ const WatchList = props => {
 
 
     // get request with useEffect
-    useEffect( ()=>{
+    useEffect(()=>{
         axios.get('http://localhost:8000/api/allAnime')
             .then( 
                 e=> 
                 setData(e.data)
                 // setData(e.data) 
                 )
-            .catch( e=> console.log(e) )
-    },[data] )
+            .catch((err) => {
+                Navigate("/login")
+            }
+    , [data] ) }
+)
 
     const deleteHandler = (id) => {
         console.log("deleted", id)

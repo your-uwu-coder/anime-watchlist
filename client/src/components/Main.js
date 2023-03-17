@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../components/Main.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import { useParams } from 'react-router-dom';
 
 const Main = (props) => {
+    const Navigate = useNavigate();
     const [allAnime, setAllAnime] = useState([]);
 
     //display all anime api list
     useEffect(() => {
-        axios.get('https://api.jikan.moe/v4/anime?limit=20')
+        axios.get('https://api.jikan.moe/v4/anime?limit=20', {withCredentials:true})
             .then((animeList) => {
                 setAllAnime(animeList.data.data)
                 // console.log(animeList.data.data)
             })
             .catch ((err) => {
                 console.log(err)
+                setAllAnime([])
+                Navigate("/login")
             })
     }, [])
 

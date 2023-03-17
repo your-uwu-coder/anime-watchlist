@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios';
+import './Register.css'
 
 
 const Register = (props) => {
+    const Navigate = useNavigate();
+    const [errors, setErrors] = useState({})
     const [userReg, setUserReg] = useState({
         firstName:'',
         lastName:'',
@@ -19,12 +22,14 @@ const Register = (props) => {
 
     // Submit Handle
     const submitHandler = (e) => {
+        e.preventDefault();
         axios.post('http://localhost:8000/api/register', userReg, {withCredentials:true})
         .then((res) => {
             console.log(res)
+            Navigate('/dashboard')
         })
         .catch((err) => {
-            console.log(err)
+            setErrors(err.response.data.error.errors)
         })
     }
 
@@ -63,21 +68,41 @@ const Register = (props) => {
                     <h2 className='text-center'>Register!</h2>
                         <label className='form-label'>First Name:</label>
                         <input className='form-control' type="text" name='firstName' value={userReg.firstName} onChange={onChangeHandler}/>
+                        {
+                            errors.firstName? 
+                            <p className='text-danger'>{errors.firstName.message}</p>:
+                            null
+                        }
 
                         <label className='form-label'>Last Name:</label>
                         <input className='form-control' type="text" name='lastName' value={userReg.lastName} onChange={onChangeHandler}/>
+                        {
+                            errors.lastName? 
+                            <p className='text-danger'>{errors.lastName.message}</p>:
+                            null
+                        }
 
                         <label className='form-label'>Email:</label>
                         <input className='form-control' type="text" name='email' value={userReg.email} onChange={onChangeHandler}/>
+                        {
+                            errors.email? 
+                            <p className='text-danger'>{errors.email.message}</p>:
+                            null
+                        }
 
                         <label className='form-label'>Password:</label>
                         <input className='form-control' type="password" name='password' value={userReg.password} onChange={onChangeHandler}/>
+                        {
+                            errors.password? 
+                            <p className='text-danger'>{errors.password.message}</p>:
+                            null
+                        }
 
                         <label className='form-label'>Confirm Password:</label>
                         <input className='form-control' type="password" name='confirmPassword' value={userReg.confirmPassword} onChange={onChangeHandler}/>
                         <button className='btn btn-dark my-3'>Register</button>
                         <br/>
-                        <p>Already have an account?<Link to={"/login"}> Click here</Link></p>
+                        <p>Already have an account? <Link to={"/login"}>Click here</Link></p>
                     </form>
                 </div>
         </div>

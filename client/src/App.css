@@ -4,3 +4,15 @@
   font-family: 'Fira Sans', sans-serif;
 }
 
+body {
+  background-image: url('../src/imgs/japan.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding-top: 150px;
+}
+
+
+
+

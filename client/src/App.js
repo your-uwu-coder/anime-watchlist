@@ -1,6 +1,5 @@
 import './App.css';
-import './components/Main.css'
-import React, {useState} from 'react';
+import React from 'react';
 import Main from './components/Main';
 import Nav from './components/Nav';
 import {Routes, Route} from 'react-router-dom';
@@ -15,7 +14,6 @@ function App() {
   return (
     <div className="App">
       <Nav/>
-      <div className="bg-img">
       
     <Routes>
       <Route path="/" element={<Register />}/>
@@ -25,7 +23,6 @@ function App() {
       <Route path="/addanimeform/:id" element={<AddAnimeForm/>}/>
       <Route path="/edit/:id" element={<EditAnime />} />
     </Routes>
-    </div>
     </div>
   );
 }
