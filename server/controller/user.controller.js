@@ -53,6 +53,7 @@ module.exports = {
             }
         }
         catch(err) {
+            console.log('Invalid')
             res.status(400).json({error:err})
         }
     },

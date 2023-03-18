@@ -36,24 +36,12 @@ const EditAnime = (props) => {
         axios.put(`http://localhost:8000/api/edit/${id}`, anime)
         .then((res) => {
             console.log(res.data)
-            Navigate('/watchlist')
+            Navigate('/allanime')
         })
         .catch((err) => {
             setErrors(err.response.data.errors)
         })
     }
-
-    const deleteHandler = (id) => {
-        axios.delete(`http://localhost:8000/api/deleteOne/${id}`)
-        .then((res) => {
-            Navigate('/')
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
-
-
 
     return (
             <div className="w-25 mx-auto">
@@ -75,7 +63,7 @@ const EditAnime = (props) => {
                         <p className='mb-0 fw-bold'>Comments:</p>
                         <textarea className='form-control w-50' onChange={e => setAnime({...anime, 'comment': e.target.value})}/>
                         <br/>
-                        <button className='btn btn-secondary btn-sm mt-3' onClick={(e) => deleteHandler(anime._id)}>Update</button>
+                        <button className='btn btn-light btn-sm mt-3'>Update</button>
                     </div>
                 </form>
                 <h2>Reviews:</h2>

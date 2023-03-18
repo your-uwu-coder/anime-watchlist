@@ -26,6 +26,7 @@ const Register = (props) => {
         axios.post('http://localhost:8000/api/register', userReg, {withCredentials:true})
         .then((res) => {
             console.log(res)
+            window.localStorage.setItem('uuid', res.data.user._id)
             Navigate('/dashboard')
         })
         .catch((err) => {

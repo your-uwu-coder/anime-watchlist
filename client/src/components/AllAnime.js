@@ -1,24 +1,25 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import './AllAnime.css'
 import { Link, useNavigate } from 'react-router-dom';
 
-const WatchList = props => {
+const AllAnime = props => {
     const [data, setData] = useState([])
     const Navigate = useNavigate()
 
 
     // get request with useEffect
     useEffect(()=>{
-        axios.get('http://localhost:8000/api/allAnime')
-            .then( 
-                e=> 
-                setData(e.data)
-                // setData(e.data) 
-                )
+        axios.get('http://localhost:8000/api/allAnime', {withCredentials:true})
+            .then((res) =>{
+                setData(res.data)
+            })
             .catch((err) => {
+                console.log('directing to login page..')
+                setData([])
                 Navigate("/login")
             }
-    , [data] ) }
+    )}, []
 )
 
     const deleteHandler = (id) => {
@@ -34,7 +35,7 @@ const WatchList = props => {
 
 
     return(
-        <div className='w-25 mx-auto'>
+        <div id="anime-table" className='w-25 mx-auto'>
             <h2 className='fw-bold'>My Watch List:</h2> 
                 <table className='table'>
                     <thead>
@@ -51,7 +52,7 @@ const WatchList = props => {
                         <td>{anime.title}</td> 
                         <td>{anime.status}</td>
                         <td><Link to={`/edit/${anime._id}`}>
-                                <button type="button" className='btn btn-secondary btn-sm me-3' >Edit</button>
+                                <button type="button" className='btn btn-light btn-sm me-3' >Edit</button>
                             </Link>
                             <button onClick={(e) => deleteHandler(anime._id)}  className='btn btn-danger btn-sm'>Delete</button>
                         </td>
@@ -66,4 +67,4 @@ const WatchList = props => {
     )
 }
 
-export default WatchList;
+export default AllAnime;

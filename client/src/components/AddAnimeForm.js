@@ -46,7 +46,7 @@ const AddAnimeForm = (props) => {
         axios.post('http://localhost:8000/api/watchlist', anime)
         .then((res) => {
             // console.log(res.data.data)
-            Navigate('/watchlist')
+            Navigate('/allanime')
         })
         .catch((err) => {
             setErrors(err.response.data.errors)
@@ -58,9 +58,9 @@ const AddAnimeForm = (props) => {
         <div className="anime-container">
                 <form onSubmit={submitHandler} className='border mb-5'>
                     <img src={photo} alt="Anime" className='img-thumbnail' />
-                    <Link to={"/"} className='text-secondary'> ⬅ Back to List </Link>
+                    <Link to={"/"} className='text-light'> ⬅ Back to List </Link>
                     <div className="text-content"> 
-                        <h3 className='text-primary'> {anime.title} </h3>
+                        <h3 className='text-dark fw-bold'> {anime.title} </h3>
                         <p> Total Episodes: {anime.episodes} </p>
                         <p> {anime.synopsis} </p>
                         <select className='form-select mb-3 w-25' onChange={e => setAnime({...anime, 'status': e.target.value})}>

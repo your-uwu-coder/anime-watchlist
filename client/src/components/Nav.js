@@ -11,10 +11,11 @@ const Nav = (props) => {
         axios.post('http://localhost:8000/api/logout', {}, {withCredentials:true})
             .then((res) => {
                 console.log('logged out..')
+                window.localStorage.removeItem('uuid')
+                Navigate('/login')
             })
             .catch((err) => {
                 console.log(err)
-                Navigate('/login')
             }) 
     }
     return(
@@ -22,7 +23,7 @@ const Nav = (props) => {
                 <h1>📺<strong>Anime</strong>WatchList</h1>
                 <div className='d-flex align-items-center gap-5'>            
                     <Link to="/dashboard" id="link">Dashboard</Link>
-                    <Link to="/watchlist" id="link">My Watch List</Link>
+                    <Link to="/allanime" id="link">My Watch List</Link>
                     <button onClick={logout} className="p-1 btn btn-outline-secondary btn-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                         <path fillRule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>

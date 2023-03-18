@@ -26,6 +26,7 @@ module.exports = {
     },
 
     editAnime: async (req, res) => {
+        console.log('editAnime')
         try {
             const updatedAnime = await Anime.findOneAndUpdate({ _id: req.params.id }, req.body , { new: true, runValidators: true } )
             res.json(updatedAnime)
@@ -46,6 +47,7 @@ module.exports = {
     },
 
     deleteAnime: async (req, res) => {
+        console.log('deleteAnime')
         try{
             const response = await Anime.deleteOne({_id: req.params.id})
             res.json(response)

@@ -10,7 +10,7 @@ const Main = (props) => {
 
     //display all anime api list
     useEffect(() => {
-        axios.get('https://api.jikan.moe/v4/anime?limit=20', {withCredentials:true})
+        axios.get('https://api.jikan.moe/v4/anime?limit=20')
             .then((animeList) => {
                 setAllAnime(animeList.data.data)
                 // console.log(animeList.data.data)

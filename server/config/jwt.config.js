@@ -7,14 +7,14 @@ module.exports.authenticate = (req, res, next) => {
     // ! req.cookies.userToken 
     // payload is everything we stored in the userToken
     jwt.verify(req.cookies.userToken, SECRET, (err,payload) => {
-        console.log(req.cookies);
+        // console.log(req.cookies);
         if(err){
             res.status(401).json({verified: false})
         }
         else{
-            console.log('Authenticated')
+            // console.log('Authenticated')
             req.user = payload._id
-            console.log('PAYLOAD', payload);
+            // console.log('PAYLOAD', payload);
             next()
         }
     })
