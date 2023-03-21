@@ -5,6 +5,7 @@ import { userContext } from "../context/UserContext";
 
 const Login = (props) => {
     const {loggedInUser, setLoggedInUser} = useContext(userContext)
+    const [errors, setErrors] = useState({})
     const Navigate = useNavigate();
     const [userLogin, setUserLogin] = useState({
         email:'',
@@ -25,7 +26,7 @@ const Login = (props) => {
             Navigate("/dashboard")
         })
         .catch((err) => {
-            console.log(err)
+            setErrors(err.response.data)
         })
     }
 
@@ -39,6 +40,11 @@ const Login = (props) => {
 
             <div className="w-25">
                 <form onSubmit={loginHandler} className='col-4 w-75 mx-auto user-form'>
+                    {
+                        errors.message? 
+                            <p className="text-danger">{errors.message}</p>:
+                            null
+                    }
                     <label className='form-label'>Email:</label>
                     <input className='form-control' type="text" name='email' value={userLogin.email} onChange={onChangeHandler}/>
 

@@ -76,7 +76,7 @@ const AddAnimeForm = (props) => {
                             }
                         
                         <p className='mb-0 fw-bold'>Comments:</p>
-                        <textarea className='form-control w-50' onChange={e => setAnime({...anime, 'comment': e.target.value})}/>
+                        <textarea className='form-control w-50' placeholder="Type here..." onChange={e => setAnime({...anime, 'comment': e.target.value})}/>
                         <br/>
                         <button className='btn btn-success btn-sm mt-3'>Add</button>
                     </div>

@@ -1,16 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {useNavigate, useParams} from 'react-router-dom'
+import {Link, useNavigate, useParams} from 'react-router-dom'
 import axios from 'axios';
 
 const EditAnime = (props) => {
-    const [anime, setAnime] = useState({
+    const [anime, setAnime] = useState([{
         title:"",
         episodes:"",
         synopsis: "",
         status: "",
         comment: ""
-    })
+    }])
     const [errors, setErrors] = useState({})
+    const [time, setTime] = useState("")
     const {id} = useParams();
     const Navigate = useNavigate();
 
@@ -25,18 +26,25 @@ const EditAnime = (props) => {
         })
     }, [])
 
+    //timestamp 
+    var showDate = new Date();
+    var timeStamp = showDate.toLocaleTimeString();
+    var dateStamp = showDate.toLocaleDateString();
+    var stamp = `${dateStamp} ${timeStamp}` 
+    
+
     const changeHandler = (e) => {
         setAnime(prevState => ({...prevState, [e.target.name]: e.target.value}))
     }
 
-
     const updateHandler = (e) => {
         e.preventDefault();
+        document.getElementById("textarea").value = ""
         console.log(anime)
         axios.put(`http://localhost:8000/api/edit/${id}`, anime)
         .then((res) => {
-            console.log(res.data)
-            Navigate('/allanime')
+            setTime(...time, stamp);
+            Navigate("/allanime")
         })
         .catch((err) => {
             setErrors(err.response.data.errors)
@@ -47,8 +55,9 @@ const EditAnime = (props) => {
             <div className="w-25 mx-auto">
                 <form onSubmit={updateHandler} className='border mb-5 w-100'>
                     <div className="text-content"> 
-                        <h3 className='text-primary'> {anime.title} </h3>
-                        <select className='form-select mb-3 w-25' onChange={changeHandler} name='status' value={anime.status}>
+                        <Link to="/allanime" className="text-light">⬅ Back to Watch List </Link>
+                        <h3 className='text-dark mt-2'> {anime.title} </h3>
+                        <select className='form-select mb-3 w-50' onChange={changeHandler} name='status' value={anime.status}>
                             <option>(Choose one)</option>
                             <option value="Not Started">Not Started</option>
                             <option value="In Progress">In progress</option>
@@ -61,14 +70,16 @@ const EditAnime = (props) => {
                             }
                         
                         <p className='mb-0 fw-bold'>Comments:</p>
-                        <textarea className='form-control w-50' onChange={e => setAnime({...anime, 'comment': e.target.value})}/>
+                        <textarea id="textarea" className='form-control w-50' placeholder="Type here..." onChange={e => setAnime({...anime, 'comment': e.target.value})}/>
                         <br/>
                         <button className='btn btn-light btn-sm mt-3'>Update</button>
                     </div>
                 </form>
-                <h2>Reviews:</h2>
-                <p>{anime.updatedAt}</p>
-                <p>{anime.comment}</p>
+                <div className="text-light">
+                    <h2>📝Comments:</h2>
+                    <p>{stamp}</p>
+                    <p>{anime.comment}</p>
+                </div>
             </div>
     )
 }

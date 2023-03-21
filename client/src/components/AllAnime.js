@@ -23,10 +23,12 @@ const AllAnime = props => {
 )
 
     const deleteHandler = (id) => {
-        console.log("deleted", id)
+        let deletedOne = data.filter((one) => one._id !== id)
+        setData(deletedOne);        
         axios.delete(`http://localhost:8000/api/deleteOne/${id}`)
             // console.log(`${id}`)
             .then((res) => {
+                
             })
             .catch((err) => {
                 console.log(err)
@@ -35,11 +37,12 @@ const AllAnime = props => {
 
 
     return(
-        <div id="anime-table" className='w-25 mx-auto'>
-            <h2 className='fw-bold'>My Watch List:</h2> 
+        <div id="anime-table" className='w-50 mx-auto p-4'>
+            <Link to="/dashboard" className="text-light">⬅ Back to List</Link>
+            <h2 className='fw-bold mt-3'>My Watch List:</h2> 
                 <table className='table'>
                     <thead>
-                        <tr>
+                        <tr className="fw-bold">
                             <td>Title</td>
                             <td>Status</td>
                             <td>Actions</td>
@@ -54,7 +57,7 @@ const AllAnime = props => {
                         <td><Link to={`/edit/${anime._id}`}>
                                 <button type="button" className='btn btn-light btn-sm me-3' >Edit</button>
                             </Link>
-                            <button onClick={(e) => deleteHandler(anime._id)}  className='btn btn-danger btn-sm'>Delete</button>
+                            <button onClick={() => deleteHandler(anime._id)}  className='btn btn-danger btn-sm'>Delete</button>
                         </td>
                     </tr>
                     )
