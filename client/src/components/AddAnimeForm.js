@@ -58,7 +58,7 @@ const AddAnimeForm = (props) => {
         <div className="anime-container">
                 <form onSubmit={submitHandler} className='border mb-5'>
                     <img src={photo} alt="Anime" className='img-thumbnail' />
-                    <Link to={"/"} className='text-light'> ⬅ Back to List </Link>
+                    <Link to={"/dashboard"} className='text-light'> ⬅ Back to List </Link>
                     <div className="text-content"> 
                         <h3 className='text-dark fw-bold'> {anime.title} </h3>
                         <p> Total Episodes: {anime.episodes} </p>

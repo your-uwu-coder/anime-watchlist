@@ -3,7 +3,7 @@ import {createContext, useState} from 'react'
 export const userContext = createContext()
 
 export const UserProvider = (props) => {
-    const [loggedInUser, setLoggedInUser] = useState({})
+    const [loggedInUser, setLoggedInUser] = useState([])
 
 
     return (

@@ -51,7 +51,7 @@ const Register = (props) => {
                         <img src="https://www.awn.com/sites/default/files/styles/original/public/image/featured/onepiece1999-1280.jpg?itok=HITwmnXc" className="d-block w-100" alt="One Piece"/>
                         </div>
                         <div className="carousel-item">
-                        <img src="https://free4kwallpapers.com/uploads/wallpaper/anime-bleach-hd-wallpaper-1920x1080-1280x720-wallpaper.jpg" className="d-block w-100" alt="Bleach"/>
+                        <img src="https://www.xtrafondos.com/wallpapers/bleach-thousand-year-blood-war-anime-11093.jpg" className="d-block w-100" alt="Bleach"/>
                         </div>
                     </div>
                     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
