@@ -10,15 +10,13 @@ const Main = (props) => {
     const [allAnime, setAllAnime] = useState([]);
     const [pageNum, setPageNum] = useState(0)
 
- 
     
     //display all anime api list
     useEffect(() => {
-        // ! FIGURE OUT HOW TO ADD ALL ANIME TO REACT APP
         axios.get('https://api.jikan.moe/v4/anime')
             .then((animeList) => {
                 setAllAnime(animeList.data.data)
-                // console.log(animeList.data.data)
+                console.log(animeList)
             })
             .catch ((err) => {
                 console.log(err)
@@ -49,9 +47,18 @@ const Main = (props) => {
         setPageNum(selected)
     }
 
-    // TODO: CONTINUE PROJECT WITH PAGINATION 
-
+    // TODO: Continue project from here (SearchBar begins)
     return (
+        <>
+
+        <div>
+            <input 
+                type="search" 
+                placeholder="Search for an anime.."
+                required
+            />
+
+        </div>
         <div className='bg-img'>
             <div className='d-flex flex-wrap mx-auto' id="animecontainer">
                 {displayAnime}
@@ -68,6 +75,7 @@ const Main = (props) => {
                     activeClassName={"paginationActive"}
                 />
         </div>
+        </>
     )
 }
 
