@@ -14,4 +14,27 @@
     box-shadow: 2px 2px 5px grey, -2px -2px 5px grey;
 }
 
+.search-bar-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px #ddd;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    padding: 0 15px;
+    height: 2.5rem; 
+
+}
+
+input {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    font-size: 1.25rem;
+    width: 100%;
+    margin-left: 5px;
+    outline: none;
+}
 

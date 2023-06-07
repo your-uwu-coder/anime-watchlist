@@ -3,12 +3,14 @@ import axios from 'axios';
 import '../components/Main.css'
 import { Link, useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
+import { FaSearch } from "react-icons/fa"
 // import { useParams } from 'react-router-dom';
 
 const Main = (props) => {
     const Navigate = useNavigate();
     const [allAnime, setAllAnime] = useState([]);
     const [pageNum, setPageNum] = useState(0)
+    const [searchInput, setSearchInput] = useState("");
 
     
     //display all anime api list
@@ -24,6 +26,17 @@ const Main = (props) => {
                 Navigate("/login")
             })
     }, [])
+
+    // TODO: continue project from here
+    //search bar function to grab data from api
+    useEffect((value) => {
+        axios.get('https://api.jikan.moe/v4/anime')
+    })
+
+    const handleChange = (value) => {
+        setSearchInput(value)
+
+    }
 
     const animePerPage = 20
     const pagesVisited = pageNum * animePerPage
@@ -51,10 +64,13 @@ const Main = (props) => {
     return (
         <>
 
-        <div>
+        <div className='search-bar-container'>
+            <FaSearch  id="search-icon" />
             <input 
                 type="search" 
                 placeholder="Search for an anime.."
+                value = {searchInput}
+                onChange = {(e) => handleChange(e.target.value)}
                 required
             />
 
