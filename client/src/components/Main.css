@@ -38,3 +38,6 @@ input {
     outline: none;
 }
 
+#search-icon {
+    color: rgba(63, 63, 63, 0.932);
+}

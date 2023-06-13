@@ -29,16 +29,19 @@ const Main = (props) => {
 
     // TODO: continue project from here
     //search bar function to grab data from api
-    useEffect((value) => {
-        axios.get('https://api.jikan.moe/v4/anime')
-    })
-
-    const handleChange = (value) => {
-        setSearchInput(value)
+    const handleChange = (e) => {
+        e.preventDefault();
+        FetchAnime(searchInput)
 
     }
 
-    const animePerPage = 20
+    const FetchAnime = async (query) => {
+        const temp = await fetch(`https://api.jikan.moe/v4/anime?q=${query}&limit=20`)
+        .then(res => res.json())
+        console.log(temp)
+    }
+
+    const animePerPage = 10
     const pagesVisited = pageNum * animePerPage
     const displayAnime = allAnime.slice(pagesVisited, pagesVisited + animePerPage).map((anime) =>
     { return (
@@ -64,17 +67,17 @@ const Main = (props) => {
     return (
         <>
 
-        <div className='search-bar-container'>
-            <FaSearch  id="search-icon" />
-            <input 
-                type="search" 
-                placeholder="Search for an anime.."
-                value = {searchInput}
-                onChange = {(e) => handleChange(e.target.value)}
-                required
-            />
+        <form className='search-bar-container' onSubmit={handleChange}>
+                <FaSearch  id="search-icon" />
+                <input 
+                    type="search" 
+                    placeholder="Search for an anime.."
+                    value = {searchInput}
+                    onChange = {(e) => setSearchInput(e.target.value)}
+                    required
+                />
+        </form>
 
-        </div>
         <div className='bg-img'>
             <div className='d-flex flex-wrap mx-auto' id="animecontainer">
                 {displayAnime}
