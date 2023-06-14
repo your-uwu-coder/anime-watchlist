@@ -27,12 +27,10 @@ const Main = (props) => {
             })
     }, [])
 
-    // TODO: continue project from here
     //search bar function to grab data from api
     const handleChange = (e) => {
         e.preventDefault();
         FetchAnime(searchInput)
-
     }
 
     const FetchAnime = (searchInput) => {
@@ -43,7 +41,7 @@ const Main = (props) => {
         })
     }
 
-    const animePerPage = 10
+    const animePerPage = 15
     const pagesVisited = pageNum * animePerPage
     const displayAnime = allAnime.slice(pagesVisited, pagesVisited + animePerPage).map((anime) =>
     { return (
@@ -65,37 +63,35 @@ const Main = (props) => {
         setPageNum(selected)
     }
 
-    // TODO: Continue project from here (SearchBar begins)
     return (
         <>
+            <form className='search-bar-container' onSubmit={handleChange}>
+                    <FaSearch  id="search-icon" />
+                    <input 
+                        type="search" 
+                        placeholder="Search for an anime.."
+                        value = {searchInput}
+                        onChange = {(e) => setSearchInput(e.target.value)}
+                        required
+                    />
+            </form>
 
-        <form className='search-bar-container' onSubmit={handleChange}>
-                <FaSearch  id="search-icon" />
-                <input 
-                    type="search" 
-                    placeholder="Search for an anime.."
-                    value = {searchInput}
-                    onChange = {(e) => setSearchInput(e.target.value)}
-                    required
-                />
-        </form>
-
-        <div className='bg-img'>
-            <div className='d-flex flex-wrap mx-auto' id="animecontainer">
-                {displayAnime}
+            <div className='bg-img'>
+                <div className='d-flex flex-wrap mx-auto' id="animecontainer">
+                    {displayAnime}
+                </div>
+                    <ReactPaginate
+                        previousLabel={"Previous"}
+                        nextLabel={"Next"}
+                        pageCount={pageCount}
+                        onPageChange={changePage}
+                        containerClassName={"paginationBttns"}
+                        previousLinkClassName={"previousBttn"}
+                        nextLinkClassName={"nextBttn"}
+                        disabledClassName={"paginationDisabled"}
+                        activeClassName={"paginationActive"}
+                    />
             </div>
-                <ReactPaginate
-                    previousLabel={"Previous"}
-                    nextLabel={"Next"}
-                    pageCount={pageCount}
-                    onPageChange={changePage}
-                    containerClassName={"paginationBttns"}
-                    previousLinkClassName={"previousBttn"}
-                    nextLinkClassName={"nextBttn"}
-                    disabledClassName={"paginationDisabled"}
-                    activeClassName={"paginationActive"}
-                />
-        </div>
         </>
     )
 }
