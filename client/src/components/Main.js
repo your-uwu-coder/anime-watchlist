@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 import '../components/Main.css'
 import { Link, useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
@@ -35,10 +35,12 @@ const Main = (props) => {
 
     }
 
-    const FetchAnime = async (query) => {
-        const temp = await fetch(`https://api.jikan.moe/v4/anime?q=${query}&limit=20`)
-        .then(res => res.json())
-        console.log(temp)
+    const FetchAnime = (searchInput) => {
+        axios.get(`https://api.jikan.moe/v4/anime?q=${searchInput}&limit=20`)
+        .then((res) => {
+            console.log("hello", res)
+            setAllAnime(res.data.data)
+        })
     }
 
     const animePerPage = 10
