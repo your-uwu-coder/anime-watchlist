@@ -46,4 +46,8 @@ input {
 .paginationBttns {
     display: flex;
     list-style-type: none;
+    justify-content: center;
+    margin-bottom: 150px;
+    margin-top: 50px;
+    gap: 50px;
 }

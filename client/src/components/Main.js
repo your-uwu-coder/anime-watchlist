@@ -72,7 +72,7 @@ const Main = (props) => {
                         placeholder="Search for an anime.."
                         value = {searchInput}
                         onChange = {(e) => setSearchInput(e.target.value)}
-                        required
+                        // required
                     />
             </form>
 
